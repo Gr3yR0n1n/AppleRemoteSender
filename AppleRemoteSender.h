@@ -58,7 +58,7 @@ The last two bytes are 0x87EE - which identifies this as an Apple device.
 
 #include <inttypes.h>
 #include <avr/io.h>
-#include "WProgram.h"
+#include "Arduino.h"
 
 //suffix that all remotes use.
 #define APPLE_ID 0x87EE
