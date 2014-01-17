@@ -3,6 +3,9 @@
 
 /*
 
+update by Samy Kamkar to work with arduino 1.0
+code@samy.pl -- http://samy.pl -- 1/16/2014
+
 Apple Remote Sender:
 Copyright Casey Callendrello 2008
 
@@ -58,7 +61,7 @@ The last two bytes are 0x87EE - which identifies this as an Apple device.
 
 #include <inttypes.h>
 #include <avr/io.h>
-#include "WProgram.h"
+#include "Arduino.h"
 
 //suffix that all remotes use.
 #define APPLE_ID 0x87EE

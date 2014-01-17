@@ -1,7 +1,11 @@
 /*
 
+update by Samy Kamkar to work with arduino 1.0
+code@samy.pl -- http://samy.pl -- 1/16/2014
+
 Apple Remote Sender:
 Copyright Casey Callendrello 2008
+
 
 c1 at caseyc dot net
 
@@ -24,7 +28,7 @@ For more information, see http://www.caseyc.net/home/node/10
 */
 
 
-#include "WProgram.h"
+#include "Arduino.h"
 #include "AppleRemoteSender.h"
 
 
