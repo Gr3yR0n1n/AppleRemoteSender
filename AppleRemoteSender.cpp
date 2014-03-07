@@ -28,8 +28,17 @@ For more information, see http://www.caseyc.net/home/node/10
 */
 
 
+#if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
 #include "AppleRemoteSender.h"
+
+#ifdef _A_DIGITAL_WRITE_FAST
+#include <digitalWriteFast.h>
+#endif
 
 
 AppleRemoteSender::AppleRemoteSender(int pin)
@@ -38,8 +47,13 @@ AppleRemoteSender::AppleRemoteSender(int pin)
 	_remote_id = 0x01;
 	
 	//ready the pin
+#ifdef _A_DIGITAL_WRITE_FAST
+	pinModeFast(_irpin, OUTPUT);
+	digitalWriteFast(_irpin, LOW);
+#else
 	pinMode(_irpin, OUTPUT);
 	digitalWrite(_irpin, LOW);
+#endif
 	
 	
 }
@@ -50,8 +64,13 @@ AppleRemoteSender::AppleRemoteSender(int pin, byte remote_id)
 	_remote_id = remote_id;
 	
 	//ready the pin
+#ifdef _A_DIGITAL_WRITE_FAST
+	pinModeFast(_irpin, OUTPUT);
+	digitalWriteFast(_irpin, LOW);
+#else
 	pinMode(_irpin, OUTPUT);
 	digitalWrite(_irpin, LOW);
+#endif
 }
 
 
@@ -132,9 +151,16 @@ void AppleRemoteSender::oscWrite(int time)
 	*/
   for(int i = 0; i < (time / 26) - 1; i++)
   {
+#ifdef _A_DIGITAL_WRITE_FAST
+    digitalWriteFast(_irpin, HIGH);
+    delayMicroseconds(13);
+    digitalWriteFast(_irpin, LOW);
+    delayMicroseconds(13);
+#else
     digitalWrite(_irpin, HIGH);
     delayMicroseconds(13);
     digitalWrite(_irpin, LOW);
     delayMicroseconds(13);
+#endif
   }
 }
